@@ -1,0 +1,96 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <body style="background-color:rgba(255, 235, 205, 0.2);">
+
+    <style>
+        footer {
+            background-color: rgb(47, 79, 79, 0.7);
+            color: white;
+            padding: 1em 0;
+            position: fixed;
+            width: 100%;
+            bottom: 1em;
+            left: 0;
+            right: 0;
+            text-align: center;
+        }
+
+        section {
+            margin-bottom: 2em;
+        }
+
+        .django-card {
+            background-color: rgba(0, 128, 0, 0.1);
+        }
+
+        .library-card {
+            background-color: rgba(255, 165, 0, 0.1);
+        }
+
+        .autoservice-card {
+            background-color: rgba(0, 0, 255, 0.1);
+        }
+
+        .custom-paragraph {
+            font-size: 1.2em;
+            font-style: italic;
+            color: #333;
+        }
+
+        #demo-version.transparent-text {
+            color: rgba(255, 69, 0, 0.1) !important;
+            text-align: center;
+        }
+    </style>
+
+    <section class="mt-4">
+        <h2 class="text-primary">Demonstracinė versija</h2>
+        <hr>
+        <h5>Tinklapyje yra sujungti trys projektai iš CodeAcademy kursų</h5>
+        <br>
+        <div class="card-deck">
+            <div class="card django-card">
+                <div class="card-body">
+                    <h5 class="card-title">Pagrindinis: Django</h5>
+                    <p class="card-text">Mokomės programuoti, baigiamasis darbas.</p>
+                    <a href="{% url 'learning:index' %}">Peržiūrėti</a>
+                </div>
+            </div>
+            <div class="card library-card">
+                <div class="card-body">
+                    <h5 class="card-title">Projektas: Biblioteka</h5>
+                    <p class="card-text">Atliktas paskaitų metu.</p>
+                    <a href="{% url 'library:index' %}">Peržiūrėti</a>
+                </div>
+            </div>
+            <div class="card autoservice-card">
+                <div class="card-body">
+                    <h5 class="card-title">Projektas: Autoservisas</h5>
+                    <p class="card-text">Atliktas kursų metu iš pateiktos užduoties.</p>
+                    <a href="{% url 'autoservice:index' %}">Peržiūrėti</a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <section class="mt-4">
+        <p class="custom-paragraph">Projekte pilnai veikianti registracijos forma su slaptažodžio priminimu, profilio
+            atnaujinimu.</p>
+                <h5 id="demo-version" class="text-primary transparent-text">Demonstracinė versija</h5>
+
+    </section>
+
+    <a class="btn btn-secondary ml-2" href="{% url 'learning:index' %}">Į pradžią</a>
+
+    </body>
+{% endblock %}
+
+{% block footer %}
+    <footer>
+        <p>El. paštas: jevgen.vasiljevas@gmail.com</p>
+        <p>Telefonas: +370 646 41835</p>
+        <p>&copy; 2024 Demonstracinė versija</p>
+    </footer>
+{% endblock %}
+<script src="{% static 'js/script.js' %}"></script>

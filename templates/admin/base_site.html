@@ -1,0 +1,47 @@
+{% extends "admin/base_site.html" %}
+
+{% load static %}
+{% block title %}
+    {% if subtitle %}{{ subtitle }} | {% endif %}{{ title }} | {{ site_title|default:_('Django site admin') }}
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name"><a href="{% url 'admin:index' %}">{{ site_header|default:_('Django administration') }}</a></h1>
+    {% if user.is_anonymous %}
+        {% include "admin/color_theme_toggle.html" %}
+    {% endif %}
+{% endblock %}
+
+{% block nav-global %}
+    <ul class="nav">
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin:app_list' app_label='learning' %}">Programavimas</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin:app_list' app_label='library' %}">Biblioteka</a>
+        </li>
+        <li class="nav-item">
+            <a class="nav-link" href="{% url 'admin:app_list' app_label='autoservice' %}">Autoservisas</a>
+        </li>
+        <!-- Pridėkite daugiau nuorodų, jei reikia -->
+    </ul>
+{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <!-- Čia pridėkite savo turinį -->
+        <div class="dashboard">
+            <!-- Čia pridėkite savo svarbią informaciją arba statistiką -->
+        </div>
+    </div>
+{% endblock %}
+
+{% block extrastyle %}
+    <link rel="stylesheet" href="{% static 'css/admin/admin.css' %}">
+    <!-- Pridėkite daugiau stilių, jei reikia -->
+{% endblock %}
+
+{% block extrascript %}
+    <script src="{% static 'js/admin/admin.js' %}"></script>
+    <!-- Pridėkite daugiau skriptų, jei reikia -->
+{% endblock %}

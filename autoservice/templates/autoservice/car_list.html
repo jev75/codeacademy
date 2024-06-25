@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="my-4">Automobiliai</h1>
+        <div class="list-group">
+            {% for car in page_obj %}
+                <a href="{% url 'autoservice:car_detail' car.pk %}" class="list-group-item list-group-item-action">
+                    {% if car.image %}
+                        <img src="{{ car.image.url }}" alt="{{ car.brand }} {{ car.model }}"
+                             style="width: 300px; height: auto; margin-bottom: 20px;">
+                    {% endif %}
+                    {{ car.brand }} {{ car.model }} ({{ car.year }})
+                </a>
+            {% empty %}
+            {% endfor %}
+        </div>
+        <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; Pirmas</a>
+            <a href="?page={{ page_obj.previous_page_number }}">atgal</a>
+        {% endif %}
+
+        <span class="current">
+            Puslapis {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">kitas</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">Paskutinis &raquo;</a>
+        {% endif %}
+    </span>
+        </div>
+    </div>
+{% endblock %}

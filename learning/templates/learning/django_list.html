@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Django temos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-4 mb-3">Django temos</h2>
+<br>
+<hr>
+    {% for django in django_list %}
+        <div class="col-md-12 mb-4">
+            <div class="py-2">
+                <h5 class="text-truncate">
+                    {% if django.image %}
+                        <img class="img-fluid rounded mr-3" src="{{ django.image.url }}" alt="{{ django.title }}" style="width: 60px; height: auto;">
+                    {% endif %}
+                    <a href="{% url 'learning:django_detail' django.id %}">{{ django.title }}</a>
+                </h5>
+            </div>
+            <hr>
+        </div>
+    {% endfor %}
+</div>
+    <a href="{% url 'learning:index' %}" class="btn btn-primary">Atgal</a>
+            <a class="btn btn-secondary" href="{% url 'learning:index' %}">Į pradžią</a>
+
+{% endblock %}

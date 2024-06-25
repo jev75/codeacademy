@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 style="text-align: center; color: #333;">Visos paslaugos</h2>
+  <ul style="list-style-type: none; padding: 0;">
+    {% for service in service_list %}
+      <li style="margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+        <h6 style="margin: 0; color: #007BFF;">{{ service.name }}</h6>
+        <p style="margin: 0; color: #6c757d;">Kaina: {{ service.price }} €</p>
+        <a href="{% url 'autoservice:service_detail' service.id %}" style="display: inline-block; margin-top: 10px; padding: 5px 10px; background-color: #007BFF; color: white; text-decoration: none; border-radius: 5px;">Užsakyti</a>
+      </li>
+    {% empty %}
+      <li style="color: #6c757d;">Nėra paslaugų</li>
+    {% endfor %}
+  </ul>
+{% endblock %}

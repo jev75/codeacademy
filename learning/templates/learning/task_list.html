@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Užduotys{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-4 mb-3">Užduotys</h2>
+    <hr>
+    {% for task in tasks %}
+        <div class="row mb-4">
+            <div class="col-md-12">
+                <div class="d-flex align-items-center py-2">
+                    {% if task.image %}
+                        <img class="img-fluid rounded mr-3" src="{{ task.image.url }}" alt="{{ task.title }}" style="width: 60px; height: auto;">
+                    {% endif %}
+                    <h5 class="text-truncate mb-0">
+                        <a href="{% url 'learning:task_detail' task.id %}">{{ task.title }}</a>
+                    </h5>
+                </div>
+                <hr>
+            </div>
+        </div>
+    {% endfor %}
+    <div class="d-flex justify-content-between">
+        <a href="{% url 'learning:index' %}" class="btn btn-primary">Grįžti</a>
+        <a class="btn btn-secondary" href="{% url 'learning:index' %}">Į pradžią</a>
+    </div>
+</div>
+{% endblock %}

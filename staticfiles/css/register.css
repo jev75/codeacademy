@@ -1,0 +1,20 @@
+.container.register {
+    width: 50%;
+    margin: auto;
+}
+
+.container.register h3 {
+    text-align: center;
+    color: #333;
+}
+
+.container.register .form-control {
+    border-radius: 0;
+}
+
+.container.register .register-button {
+    background-color: #333;
+    color: #fff;
+    border-radius: 0;
+    width: 100%;
+}

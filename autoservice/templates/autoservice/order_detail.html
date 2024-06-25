@@ -1,0 +1,26 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <div class="card">
+    <div class="card-header">
+      <h2>Užsakymas Nr. {{ uzsakymas.pk }}</h2>
+    </div>
+    <div class="card-body">
+      <p><i class="fas fa-calendar-alt"></i> Data: <strong>{{ uzsakymas.data }}</strong></p>
+      <p><i class="fas fa-car"></i> Automobilis: <strong>{{ uzsakymas.automobilis }}</strong></p>
+      <p><i class="fas fa-euro-sign"></i> Bendra suma: <strong>{{ uzsakymas.bendra_suma }}</strong> €</p>
+      <p><i class="fas fa-clipboard-check"></i> Statusas: <strong>{{ uzsakymas.get_statusas_display }}</strong></p>
+      <h3><i class="fas fa-tools"></i> Užsakymo paslaugos:</h3>
+
+      <ul class="list-group">
+        {% for uzsakymo_paslauga in uzsakymas.uzsakymopaslauga_set.all %}
+        <li class="list-group-item">{{ uzsakymo_paslauga.paslauga }} - {{ uzsakymo_paslauga.kiekis }} vnt. - {{ uzsakymo_paslauga.kaina }} €</li>
+        {% empty %}
+        <li class="list-group-item">Nėra paslaugų.</li>
+        {% endfor %}
+      </ul>
+    </div>
+  </div>
+</div>
+{% endblock %}

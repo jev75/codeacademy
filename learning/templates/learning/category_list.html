@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Programavimo kalbos{% endblock %}
+
+{% block content %}
+    <div class="container">
+        <h1 class="mt-4 mb-3">Programavimo kalbos</h1>
+
+        <div class="row">
+            {% for category in category_list %}
+                <div class="col-md-4 mb-4">
+                    <div class="card h-100">
+                        {% if category.image %}
+                            <img class="card-img-top" src="{{ category.image.url }}" alt="{{ category.name }}">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">
+                                <a href="{% url 'learning:category_detail' category.id %}">{{ category.name }}</a>
+                            </h5>
+                            {% if category.content %}
+                                <p class="card-text">{{ category.content|truncatechars:100|safe }}</p>
+                            {% endif %}
+                            <div class="d-flex">
+                                <a href="{% url 'learning:category_detail' category.id %}" class="btn btn-link ml-auto">Plačiau</a>
+                            </div>
+
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+    <a href="{% url 'learning:index' %}" class="btn btn-primary">Į pradžią</a>
+{% endblock %}

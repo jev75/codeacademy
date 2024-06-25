@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container mt-4">
+    <div class="row">
+        <div class="col-md-6 mx-auto">  <!-- pridėjome Bootstrap klases čia -->
+            <form method="GET" action="{% url 'search' %}">
+                <div class="input-group mb-3">
+                    <input type="text" name="query" class="form-control" placeholder="Įveskite paieškos terminą...">
+                    <div class="input-group-append">
+                        <button class="btn btn-outline-info" type="submit">Ieškoti</button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <h5 class="mb-3">Paieškos pagal "{{query}}" rezultatai:</h5>
+    {% if automobiliai %}
+    <div class="list-group">
+        {% for automobilis in automobiliai %}
+        <a href="{% url 'automobilis_detail' automobilis.pk %}" class="list-group-item list-group-item-action">
+            {{ automobilis.marke }} {{ automobilis.modelis }} ({{automobilis.klientas}})
+        </a>
+        {% endfor %}
+    </div>
+    {% else %}
+    <div class="alert alert-warning" role="alert">
+        Oops. Nieko neradome :(
+    </div>
+    {% endif %}
+</div>
+{% endblock %}

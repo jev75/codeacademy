@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <div class="container my-5">
+        <div class="card">
+            <div class="card-header bg-primary text-white">
+                <h2 class="my-4">{{ car.brand }} {{ car.model }}</h2>
+            </div>
+            <div class="card-body">
+                {% if car.image %}
+                    <img src="{{ car.image.url }}" alt="{{ car.brand }} {{ car.model }}"
+                         style="width: 300px; height: auto; margin-bottom: 20px;">
+                {% endif %}
+                <h5 class="card-title">Automobilio informacija:</h5>
+                <p class="card-text"><strong>Klientas:</strong> {{ car.client }}</p>
+                <p class="card-text"><strong>Valstybinis numeris:</strong> {{ car.license_plate }}</p>
+                <p class="card-text"><strong>VIN kadas:</strong> {{ car.VIN_code }}</p>
+                <hr>
+                <h5 class="card-title">Aprašymas:</h5>
+                <!-- Assuming you have a description field in your Car model -->
+                <p>{{ car.description | safe }}</p>
+                <hr>
+            </div>
+        </div>
+        <a href="{% url 'autoservice:cars' %}" class="btn btn-primary">Grįžti į automobilių sąrašą</a>
+    </div>
+{% endblock %}

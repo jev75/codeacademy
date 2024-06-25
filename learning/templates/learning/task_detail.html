@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ task.title }}{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>{{ task.title }}</h2>
+    <hr>
+    {% if task.question %}
+        <div class="card mb-3">
+            <div class="card-body" style="background-color: #f8f9fa;">
+                {{ task.question|safe }}
+            </div>
+        </div>
+        <hr>
+    {% endif %}
+
+    <form method="post" class="mb-4">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="btn btn-success">Pateikti atsakymą</button>
+    </form>
+
+    <a class="btn btn-primary" href="{% url 'learning:task_list' %}" class="btn btn-primary">Grįžti</a>
+
+</div>
+{% endblock %}

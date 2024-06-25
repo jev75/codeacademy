@@ -1,0 +1,36 @@
+body {
+    background: #abbaab;
+    background: -webkit-linear-gradient(to right, #ffffff, #abbaab);
+    background: linear-gradient(to right, #ffffff, #abbaab);
+}
+
+.custom-btn-primary {
+    background-color: #007bff; /* Nauja fono spalva */
+    border-color: #007bff; /* Nauja rėmelio spalva */
+    color: white;
+}
+
+.custom-btn-secondary {
+    background-color: #6c757d; /* Nauja fono spalva */
+    border-color: #6c757d; /* Nauja rėmelio spalva */
+    color: white;
+}
+
+.custom-btn-primary:hover,
+.custom-btn-primary:focus {
+    background-color: #0056b3; /* Fono spalva užvedus arba fokusuojant */
+    border-color: #0056b3; /* Rėmelio spalva užvedus arba fokusuojant */
+}
+
+.custom-btn-secondary:hover,
+.custom-btn-secondary:focus {
+    background-color: #5a6268; /* Fono spalva užvedus arba fokusuojant */
+    border-color: #545b62; /* Rėmelio spalva užvedus arba fokusuojant */
+}
+
+.button-area {
+    background-color: rgb(0, 128, 0, 0.1); /* Nauja fono spalva mygtukų sričiai */
+    padding: 15px; /* Papildomas tarpas */
+    border-radius: 5px; /* Šiek tiek apvalinti kampai */
+    margin-bottom: 20px; /* Papildomas tarpas apačioje */
+}

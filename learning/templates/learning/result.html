@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Rezultatas{% endblock %}
+
+{% block content %}
+<div class="container mt-4">
+    <h2>Rezultatas</h2>
+    <hr>
+    <div class="mt-4">
+        {% if color == 'green' %}
+            <h3 class="text-success">Teisingai!</h3>
+        {% else %}
+            <h3 class="text-danger">Atsakymas neteisingas, bandykite dar kartą.</h3>
+        {% endif %}
+    </div>
+    <div class="mt-4">
+        <a href="{% url 'learning:task_list' %}" class="btn btn-primary">Grįžti prie užduočių sąrašo</a>
+        <a href="{% url 'learning:task_detail' current_task_id %}" class="btn btn-secondary ml-2">Grįžti į tą pačią</a>
+        {% if next_task_id %}
+            <a href="{% url 'learning:task_detail' next_task_id %}" class="btn btn-secondary ml-2">Pereiti prie sekančios</a>
+        {% endif %}
+    </div>
+</div>
+     {% block footer %}
+       {% endblock footer %}
+{% endblock %}

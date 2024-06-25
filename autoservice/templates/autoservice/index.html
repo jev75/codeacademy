@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+{% block title %}Autoservisas{% endblock %}
+
+{% block content %}
+<div class="container">
+ <ul class="navbar-nav mx-2">
+        <li class="nav-item active"><a class="nav-link" href="{% url 'autoservice:index' %}">Pradžia</a></li>
+        <li class="nav-item active"><a class="nav-link" style="color: black;" href="{% url 'autoservice:cars' %}">Visi automobiliai</a></li>
+        <li class="nav-item active"><a class="nav-link" style="color: black;" href="{% url 'autoservice:services' %}">Visos paslaugos</a></li>
+
+     <hr>
+  <h1 class="my-4 text-center">Statistika</h1>
+  <div class="row">
+    <div class="col-md-4">
+      <div class="card text-white bg-primary mb-3">
+        <div class="card-header text-center" style="color: black;"><i class="fas fa-tools"></i> Šiuo metu teikiame paslaugų</div>
+        <div class="card-body">
+          <h5 class="card-title text-center">{{ num_services }}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-success mb-3">
+        <div class="card-header text-center" style="color: black;"><i class="fas fa-check-circle"></i> Vykdomi užsakymai</div>
+        <div class="card-body">
+          <h5 class="card-title text-center">{{ num_orders }}</h5>
+        </div>
+      </div>
+    </div>
+    <div class="col-md-4">
+      <div class="card text-white bg-info mb-3">
+        <div class="card-header text-center" style="color: black;"><i class="fas fa-car"></i> Registruoti automobiliai</div>
+        <div class="card-body">
+          <h5 class="card-title text-center">{{ num_cars }}</h5>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-md-12">
+      <div class="card text-center">
+        <div class="card-body">
+          <p class="card-text">Jūs apsilankėte šiame puslapyje {{ num_visits }} kartų.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}

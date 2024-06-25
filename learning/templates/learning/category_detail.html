@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}{{ category.name }}{% endblock %}
+
+{% block content %}
+    <h2>{{ category.name }}</h2>
+
+    {% if category.content %}
+    <p>{{ category.content | safe }}</p>
+    {% endif %}
+
+    <hr>
+    <a class="btn btn-primary" href="javascript:history.back()">Grįžti</a>
+
+    {% if category.name == "Python" %}
+    <a class="btn btn-secondary" href="{% url 'learning:python' %}">Pereiti prie Python teorijos</a>
+    {% elif category.name == "Django" %}
+    <a class="btn btn-secondary" href="{% url 'learning:django' %}">Pereiti prie Django teorijos</a>
+    {% endif %}
+{% endblock %}

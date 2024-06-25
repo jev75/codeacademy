@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2 style="text-align: center; color: #333;">Paslauga</h2>
+  <div style="margin-bottom: 20px; border: 1px solid #ddd; padding: 10px; border-radius: 5px;">
+    <h6 style="margin: 0; color: #007BFF;">{{ service.name }}</h6>
+    <p style="margin: 0; color: #6c757d;">Kaina: {{ service.price }} €</p>
+  <h3 style="color: #333;">Užsakymo imitacija</h3>
+  </div>
+  <a href="{% url 'autoservice:services' %}" class="btn btn-primary">Grįžti į paslaugų sąrašą</a>
+{% endblock %}

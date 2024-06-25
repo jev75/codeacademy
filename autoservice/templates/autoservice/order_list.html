@@ -1,0 +1,36 @@
+{% extends "base.html" %}
+
+{% block content %}
+<div class="container">
+  <h3 class="my-4">Užsakymai</h3>
+  {% for uzsakymas in page_obj %}
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title"><a href="{% url 'uzsakymas_detail' uzsakymas.pk %}">{{ uzsakymas }}</a></h5>
+      <p class="card-text"><i class="fas fa-calendar-alt"></i> Data: <strong>{{ uzsakymas.data }}</strong></p>
+<p class="card-text"><i class="fas fa-clipboard-check"></i> Statusas: <strong>{{ uzsakymas.get_statusas_display }}</strong></p>    </div>
+  </div>
+  {% empty %}
+  <div class="alert alert-warning" role="alert">
+    Nėra užsakymų.
+  </div>
+  {% endfor %}
+  <div class="pagination">
+    <span class="step-links">
+        {% if page_obj.has_previous %}
+            <a href="?page=1">&laquo; pirmas</a>
+            <a href="?page={{ page_obj.previous_page_number }}">ankstesnis</a>
+        {% endif %}
+
+        <span class="current">
+            Puslapis {{ page_obj.number }} iš {{ page_obj.paginator.num_pages }}.
+        </span>
+
+        {% if page_obj.has_next %}
+            <a href="?page={{ page_obj.next_page_number }}">kitas</a>
+            <a href="?page={{ page_obj.paginator.num_pages }}">paskutinis &raquo;</a>
+        {% endif %}
+    </span>
+  </div>
+</div>
+{% endblock %}

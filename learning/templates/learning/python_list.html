@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Python temos{% endblock %}
+
+{% block content %}
+<div class="container">
+    <h2 class="mt-4 mb-3">Python temos</h2>
+<br>
+<hr>
+    {% for python in python_list %}
+        <div class="col-md-12 mb-4">
+            <div class="py-2">
+                <h5 class="text-truncate">
+                    {% if python.image %}
+                        <img class="img-fluid rounded mr-3" src="{{ python.image.url }}" alt="{{ python.title }}" style="width: 60px; height: auto;">
+                    {% endif %}
+                    <a href="{% url 'learning:python_detail' python.id %}">{{ python.title }}</a>
+                </h5>
+            </div>
+            <hr>
+        </div>
+    {% endfor %}
+</div>
+    <a href="{% url 'learning:index' %}" class="btn btn-primary">Atgal</a>
+            <a class="btn btn-secondary" href="{% url 'learning:index' %}">Į pradžią</a>
+
+{% endblock %}

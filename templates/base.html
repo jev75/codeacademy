@@ -1,0 +1,123 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="lt">
+<head>
+    <!-- Meta duomenys -->
+    <meta charset="UTF-8">
+    <title>{% block title %}Programavimas{% endblock title %}</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Papildomas stilių failas -->
+    <link rel="stylesheet" href="{% static 'css/stylesheet.css' %}">
+
+</head>
+<body>
+<!-- Navigacinis meniu -->
+<nav class="navbar navbar-expand-lg example">
+    <!-- Logotipas ir pagrindinė nuoroda -->
+    <a class="navbar-brand" href="{% url 'learning:index' %}"><span class="text-primary fs-3 ms-2 fw-bolder">Django</span></a>
+
+    <!-- Mygtukas mobiliajam meniu -->
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+            aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- Pagrindinis užrašas -->
+    <h2 class="text-center" style="font-size: 30px; opacity: 0.4;">&copy; 2024 DEMO VERSIJA</h2>
+
+    <!-- Navigacijos meniu -->
+    <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ml-auto">
+            <!-- Nuorodos į projektus -->
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'library:index' %}">Projektas: Biblioteka</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{% url 'autoservice:index' %}">Projektas: Autoservisas</a>
+            </li>
+
+            <!-- Vartotojo autentifikacijos nuorodos -->
+            {% if user.is_authenticated %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:profile' %}">{{ user.get_username }}</a>
+                </li>
+                <li class="nav-item">
+                    <form method="post" action="{% url 'logout' %}" class="form-inline">
+                        {% csrf_token %}
+                        <input type="hidden" name="next" value="/learning">
+                        <button type="submit" class="btn btn-light">Atsijungti</button>
+                    </form>
+                </li>
+            {% else %}
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'login' %}?next={{ request.path }}">Prisijungti</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'users:register' %}">Registruotis</a>
+                </li>
+            {% endif %}
+        </ul>
+    </div>
+</nav>
+
+<!-- Pagrindinis turinys -->
+<main class="container mt-4">
+    <!-- Pranešimų atvaizdavimas -->
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-info">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <!-- Dinaminis turinys -->
+    {% block content %}
+    <!-- Čia bus įterptas pagrindinio puslapio turinys -->
+    {% endblock content %}
+</main>
+
+<!-- Poraštė -->
+{% block footer %}
+<footer class="footer mt-auto py-3">
+    <div class="container">
+        <div class="row">
+            <!-- Poraštės nuorodos -->
+            <div class="col-md-4">
+                <h5>Nuorodos</h5>
+                <ul>
+                    <li><a href="{% url 'users:about' %}">Apie mus</a></li>
+                    <li><a href="#">Naudojimosi sąlygos</a></li>
+                </ul>
+            </div>
+
+            <!-- Kontaktinė informacija -->
+            <div class="col-md-4">
+                <h5>Kontaktai</h5>
+                <p>El. paštas: jevgen.vasiljevas@gmail.com</p>
+                <p>Telefonas: +370 646 41835</p>
+            </div>
+            <!-- Socialiniai tinklai -->
+            <div class="col-md-4">
+                <h5>Socialiniai tinklai</h5>
+                <a href="{% url 'users:facebook_login' %}">Facebook</a><br>
+                <a href="{% url 'users:google_login' %}">Google</a><br>
+            </div>
+        </div>
+
+        <!-- Autorių teisės -->
+        <div >
+                <p>&copy; <script>document.write(new Date().getFullYear());</script> Demonstracinis tinklapis. Visos teisės saugomos.</p>
+
+</footer>
+{% endblock footer %}
+
+<!-- JavaScript failai -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</body>
+</html>

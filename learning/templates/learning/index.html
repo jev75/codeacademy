@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Pagrindinis puslapis{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="jumbotron mt-3">
+        <h1 class="display-4">Sveiki atvykę į mūsų svetainę!</h1>
+        <p class="lead">Šioje svetainėje yra:</p>
+        <hr class="my-4">
+        <div class="row">
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ num_categories }} programavimo kalbų</h5>
+                        <a href="{% url 'learning:categories' %}" class="btn btn-primary">Peržiūrėti</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ num_python }} Python temų</h5>
+                        <a href="{% url 'learning:python' %}" class="btn btn-primary">Peržiūrėti</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ num_django }} Django temų</h5>
+                        <a href="{% url 'learning:django' %}" class="btn btn-primary">Peržiūrėti</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3 mb-3">
+                <div class="card">
+                    <div class="card-body text-center">
+                        <h5 class="card-title">{{ num_tasks }} užduočių</h5>
+                        <a href="{% url 'learning:task_list' %}" class="btn btn-primary">Peržiūrėti</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <p class="text-center">Ši svetainė buvo aplankyta {{ num_visits }} kartų.</p>
+</div>
+{% endblock %}
